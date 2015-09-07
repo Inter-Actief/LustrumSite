@@ -11,7 +11,7 @@
     <div class="carousel-inner" role="listbox">
         {% for photo in historyentry_photos %}
         <div class="item{% if forloop.first %} active{% endif %}" alt="{{ photo.description }}">
-            <img src="{% get_media_prefix %}{{ photo.photo }}">
+            <img class="img-responsive center-block" src="{% get_media_prefix %}{{ photo.photo }}">
 
             <div class="carousel-caption">
                 {{ photo.description }}

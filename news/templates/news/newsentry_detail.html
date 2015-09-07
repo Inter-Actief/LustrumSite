@@ -6,7 +6,7 @@
         {% if user.is_superuser %}
             <a class="btn btn-primary" href="{% url "news_update" object.pk %}">Wijzig</a>
             {% if not object.publication_date %}
-                <a class="btn btn-warning" href="{% url "news_publish" obj.pk %}">Publiceer</a>
+                <a class="btn btn-warning" href="{% url "news_publish" object.pk %}">Publiceer</a>
             {% endif %}
         {% endif %}
         <hr>

@@ -22,7 +22,7 @@ BASE_DIR = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
 # See https://docs.djangoproject.com/en/1.8/howto/deployment/checklist/
 
 # SECURITY WARNING: don't run with debug turned on in production!
-DEBUG = True
+DEBUG = False
 
 ALLOWED_HOSTS = []
 
@@ -120,8 +120,8 @@ STATICFILES_DIRS = (
 
 # Settings for Compressor
 COMPRESS_PRECOMPILERS = (
-    ('text/less', 'lessc {infile} {outfile}'),
-    ('text/es2015', 'babel {infile} {outfile}')
+    ('text/less', '/data/applications/lustrum2015/node_modules/less/bin/lessc {infile} {outfile}'),
+    ('text/es2015', '/data/applications/lustrum2015/node_modules/babel/bin/babel.js {infile} {outfile}')
 )
 
 COMPRESS_SOURCE_ROOT = os.path.join(BASE_DIR, 'assets')
@@ -131,5 +131,12 @@ COMPRESS_SOURCE_ROOT = os.path.join(BASE_DIR, 'assets')
 LANGUAGES = (
     ('nl', _('Dutch')),
 )
+
+# Allowed host stuff
+ALLOWED_HOSTS = [
+    '.kansrijk.inter-actief.utwente.nl',
+    '.kansrijk.inter-actief.utwente.nl.',
+]
+
 
 from LustrumSite.settings_local import *
