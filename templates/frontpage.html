@@ -1,0 +1,48 @@
+{% extends 'basic.html' %}
+{% load markdown_filter %}
+{% block content %}
+    <div class="row">
+        <div class="col-xs-12 col-sm-5">
+            <h1> Agenda</h1>
+            <ul class="calendar">
+                <li>
+                    <span class="calendar-date">30 Sept.</span> <span> Onderwijsbarbecue met Lustrumverrassing! </span>
+                </li>
+            </ul>
+        </div>
+
+        <div class="col-xs-12 col-sm-7">
+            <div class="news-article">
+                {% if news_headline %}
+                    <h1> {{ news_headline.title }}</h1>
+                    {{ news_headline.content|markdownify|safe|truncatewords_html:100 }}
+                    <p>
+                        <a href="{% url 'news_detail' news_headline.pk %}"> Lees verder </a>
+                    </p>
+                {%  endif %}
+            </div>
+            <ul class="news-item-list">
+                {% for news in news_items %}
+                    <li>
+                        <span class="news-item-title">{{ news.title }}</span>
+                        <a href="#" class="news-item-link"> Lees meer </a>
+                    </li>
+                {% endfor %}
+            </ul>
+        </div>
+    </div>
+    <div class="row">
+        <div class="col-md-12">
+            {% if historyentry %}
+            <h2> Inter-Actief in het verleden - {{ historyentry.title }} </h2>
+            <p>
+                {{ historyentry.content|markdownify|safe|truncatewords_html:100  }}
+
+                <a href="{% url 'history_detail' historyentry.pk %}">Lees verder </a>
+            </p>
+
+            {% include 'news/includes/history_carousel.html' %}
+            {% endif %}
+        </div>
+    </div>
+{% endblock %}

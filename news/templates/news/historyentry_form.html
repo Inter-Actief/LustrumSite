@@ -1,0 +1,50 @@
+{% extends 'basic.html' %}
+{% load bootstrap static %}
+
+{% block content %}
+<form role="form" method="post" enctype="multipart/form-data">
+
+    <h2> {% if object.pk %}Wijzig {% else %} Nieuw {% endif %}historieitem</h2>
+    {% csrf_token %}
+    {{ form|bootstrap }}
+
+    {{ history_photo_form.management_form }}
+
+    <div class="history_photo_form_wrapper">
+        {% for photo_form in history_photo_form %}
+            <div class="history_photo_form">
+                <h1> Foto </h1>
+                {{ photo_form.photo|bootstrap_inline }}
+                {{ photo_form.description|bootstrap_inline }}
+
+                {% for hidden in photo_form.hidden_fields %}
+                    {{ hidden }}
+                {% endfor %}
+            </div>
+        {% endfor %}
+    </div>
+
+    {% for hidden in form.hidden_fields %}
+        {{ hidden }}
+    {% endfor %}
+
+    <div class="form-group">
+      <button type="submit" class="btn btn-primary">Opslaan</button>
+    </div>
+</form>
+{% endblock %}
+
+{% block scripts %}
+    <script src="{% static 'js/vendor/jquery-formset/jquery.formset.js' %}"></script>
+    <script>
+        $(function() {
+            $('.history_photo_form').formset({
+                prefix: '{{ history_photo_form.prefix }}',
+                addCssClass: "btn btn-primary",
+                deleteCssClass: "btn btn-danger",
+                addText: "Voeg extra foto toe",
+                deleteText: "Verwijder deze foto"
+            });
+        })
+    </script>
+{% endblock %}

@@ -1,0 +1,15 @@
+{% extends 'basic.html' %}
+{% load bootstrap %}
+
+{% block content %}
+    <div class="well">
+        <p>Weet je zeker dat je "{{ object }}" wil publiceren?</p>
+
+        <form method="post">
+            {% csrf_token %}
+            <button type="submit" class="btn btn-danger">Ja</button>
+            <a href="{{ object.get_absolute_url }}" class="btn btn-link">terug</a>
+        </form>
+
+    </div>
+{% endblock %}

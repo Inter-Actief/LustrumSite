@@ -1,0 +1,124 @@
+@import "lucie_variables";
+/* here is all other less that is not a specific component neither an override */
+body {
+  height: 100%;
+}
+
+.wrapper-fixed {
+  background-color: #fff;
+  position: fixed;
+  left: 0;
+  right: 0;
+}
+
+.content {
+  min-height: 900px;
+}
+
+.main {
+  background-color: white;
+}
+
+.footer {
+  background-color: @lucie-gray;
+  border-top: 1px solid darken(@lucie-gray, 20%);
+  text-align: center;
+  vertical-align: middle;
+  margin-top: 10px;
+
+  height: 50px;
+  line-height: 50px;
+}
+
+.footer p {
+  margin: 0;
+}
+
+.fake-nav {
+  height: 50px;
+  background-color: @lucie-gray;
+
+  border-bottom: 1px solid darken(@lucie-gray, 10%);
+}
+
+.banner {
+  border: 1px solid @lucie-gray;
+  padding: 5px;
+  box-sizing: border-box;
+  margin: 10px;
+
+  img {
+    padding: 5px;
+    width: 100%;
+  }
+
+  p {
+    text-align: center;
+  }
+}
+
+.calendar {
+  list-style: none;
+  padding: 0;
+  font-size: @font-size-h4;
+
+  li {
+    border-top: 1px solid @lucie-gray;
+
+    .calendar-date {
+      font-family: @headings-font-family;
+      color: @lucie-red;
+      font-size: @font-size-h3;
+    }
+  }
+
+  li:first-child {
+    border-top: 0;
+  }
+}
+
+.news-item-list {
+  list-style: none;
+  padding: 0;
+  font-size: @font-size-h3;
+
+  li {
+    border-top: 1px solid @lucie-gray;
+
+    .news-item-title {
+      font-family: @headings-font-family;
+      color: @lucie-red;
+    }
+
+    .news-item-link {
+      line-height: 2.5;
+      float: right;
+      vertical-align: middle;
+      font-size: @font-size-base;
+    }
+  }
+
+  li:first-child {
+    border-top: 0;
+  }
+}
+
+.news-article {
+  text-align: justify;
+
+  font-size: 16px;
+}
+
+/* TODO: Dit kan eigenlijk niet, maar er had ergens een stukje jquery magie slimmer moeten zijn */
+.history_photo_form_wrapper {
+  .history_photo_form {
+    border-top: 1px solid @lucie-gray;
+    padding-bottom: 10px;
+    margin-bottom: 10px;
+
+    &:last-of-type {
+      border-bottom: 1px solid @lucie-gray;
+
+    }
+  }
+}

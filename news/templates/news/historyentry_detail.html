@@ -1,0 +1,20 @@
+{% extends 'basic.html' %}
+{% load markdown_filter %}
+{% block content %}
+    <div class="col-lg-10 col-lg-offset-1">
+        <h2>{{ object.title }}</h2>
+        {% if user.is_superuser %}
+            <a class="btn btn-primary" href="{% url "history_update" object.pk %}">Wijzig</a>
+            {% if not object.publication_date %}
+                <a class="btn btn-warning" href="{% url "history_publish" object.pk %}">Publiceer</a>
+            {% endif %}
+        {% endif %}
+        <hr>
+        <div class="news-article">
+            {{ object.content|markdownify|safe }}
+        </div>
+        {% with historyentry_photos=object.historyphoto_set.all  %}
+            {% include 'news/includes/history_carousel.html' %}
+        {% endwith %}
+    </div>
+{% endblock %}

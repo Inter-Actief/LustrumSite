@@ -1,0 +1,29 @@
+@import "lucie_variables.less";
+
+.cover-photo {
+  height: 200px;
+  background-position: center;
+  background-size: 100%;
+  position: relative;
+}
+
+.cover-photo-button {
+  padding: 11px 15px;
+  font-size: 19px;
+  display: inline-block;
+  background-color: fade(@lucie-gray, 55%);
+  margin: 5px;
+  border-radius: 2px;
+
+  position: absolute;
+  right: 0;
+  bottom: 0;
+
+  &:hover {
+    background-color: @lucie-gray;
+  }
+
+  &::before {
+    -webkit-filter: blur(10px);
+  }
+}

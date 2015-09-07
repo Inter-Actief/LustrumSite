@@ -1,0 +1,42 @@
+{% load staticfiles %}
+<nav class="navbar navbar-default">
+    <!-- Brand and toggle get grouped for better mobile display -->
+    <div class="container">
+        <div class="navbar-header">
+            <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#bs-example-navbar-collapse-1" aria-expanded="false">
+                <span class="sr-only">Toggle navigation</span>
+                <span class="icon-bar"></span>
+                <span class="icon-bar"></span>
+                <span class="icon-bar"></span>
+            </button>
+            <a class="navbar-brand" href="{% url 'frontpage' %}"> <img alt="Kansrijk" src="{% static 'img/logo_kansrijk.png' %}"></a>
+        </div>
+
+        <!-- Collect the nav links, forms, and other content for toggling -->
+        <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
+            <ul class="nav navbar-nav">
+                <li {% if 'news' in request.path %}class="active" {% endif %}>
+                    <a href="{% url 'news_list' %}">Nieuws</a>
+                </li>
+                <li {% if 'history' in request.path %}class="active" {% endif %}>
+                    <a href="{% url 'history_list' %}">Historie</a>
+                </li>
+                <li {% if 'about' in request.path %} class="active" {% endif %}>
+                    <a href="{% url 'django.contrib.flatpages.views.flatpage' 'about' %}">Over</a>
+                </li>
+                <li {% if 'contact' in request.path %} class="active" {% endif %}>
+                    <a href="{% url 'django.contrib.flatpages.views.flatpage' 'contact' %}">Contact</a>
+                </li>
+            </ul>
+            {% if user and user.is_superuser %}
+            <ul class="nav navbar-nav navbar-right">
+                 <li {% if 'companies' in request.path %}class="active" {% endif %}>
+                    <a href="{% url 'banner_list' %}">Banners</a>
+                </li>
+                <li><p class="navbar-text">{{ user }}</p></li>
+
+            </ul>
+            {% endif %}
+        </div><!-- /.navbar-collapse -->
+    </div>
+</nav>

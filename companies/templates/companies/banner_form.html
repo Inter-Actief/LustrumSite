@@ -1,0 +1,13 @@
+{% extends 'basic.html' %}
+{% load bootstrap %}
+
+{% block content %}
+<form role="form" method="post" enctype="multipart/form-data" >
+    <h2> {% if object.pk %}Wijzig {% else %} Nieuwe {% endif %}banner</h2>
+    {% csrf_token %}
+    {{ form|bootstrap }}
+    <div class="form-group">
+      <button type="submit" class="btn btn-primary">Opslaan</button>
+    </div>
+</form>
+{% endblock %}

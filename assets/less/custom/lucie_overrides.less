@@ -1,0 +1,39 @@
+@import "lucie_variables.less";
+
+@icon-font-path: "@{static_url}fonts/vendor/bootstrap-3.3.5/";
+
+/* override the navbar to be more in our style */
+@navbar-default-bg: @lucie-gray;
+@navbar-default-link-color: @lucie-red;
+@navbar-border-radius: 0px;
+@navbar-default-border: darken(@lucie-gray, 10%);
+@headings-font-family: Lobster, cursive;
+@headings-color: @lucie-red;
+
+
+.navbar-brand {
+  padding: 10px 10px;
+}
+
+.navbar-brand > img {
+  height: 100%;
+}
+
+hr {
+  border-color: @lucie-gray;
+}
+
+.alert-debug {
+  .alert-variant(#fff; @lucie-gray; @alert-success-text);
+}
+
+.label-block {
+  width: 100%;
+  display: block;
+}
+
+.btn-block + .label-block,
+.label-block + .label-block,
+.label-block + .btn-block {
+  margin-top: 10px;
+}

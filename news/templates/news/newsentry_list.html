@@ -1,0 +1,34 @@
+{% extends 'basic.html' %}
+{% load markdown_filter %}
+
+{% block content %}
+    <div class="row">
+        <div class="col-lg-10 col-lg-offset-1">
+            {%  if user.is_superuser %}
+               <a class="btn btn-success" href="{% url "news_create" %}">
+                   <span class="glyphicon glyphicon-plus" aria-hidden="true"></span> Voeg nieuw nieuwsartikel toe
+               </a>
+            {% endif %}
+
+            {% for obj in object_list %}
+                {%  if obj.publication_date or user.is_superuser %}
+                    <h2>{{ obj.title }}</h2>
+                    {% if user.is_superuser %}
+                        <a class="btn btn-primary" href="{% url "news_update" obj.pk %}">Wijzig</a>
+                        {% if not obj.publication_date %}
+
+                            <a class="btn btn-warning" href="{% url "news_publish" obj.pk %}">Publiceer</a>
+                        {% endif %}
+                    {% endif %}
+                    <hr>
+                    <div class="news-article">
+                        {{ obj.content|markdownify|safe|truncatewords_html:100 }}
+                        <p>
+                            <a href="{% url 'news_detail' obj.pk %}"> Lees verder </a>
+                        </p>
+                    </div>
+                {% endif %}
+            {% endfor %}
+        </div>
+    </div>
+{% endblock %}

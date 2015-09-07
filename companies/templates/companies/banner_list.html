@@ -1,0 +1,36 @@
+{% extends 'basic.html' %}
+{% load static %}
+
+{% block override_container %}
+    <div class="row">
+        <h2>Wijzig banners</h2>
+        <a class="btn btn-success" href="{% url "banner_create" %}">
+            <span class="glyphicon glyphicon-plus" aria-hidden="true"></span> Voeg nieuwe banner toe
+        </a>
+    </div>
+    <div class="row">
+        {% for obj in object_list %}
+            <div class="col-xs-8 col-sm-6 col-md-3">
+                <div class="banner">
+                    <img src="{% get_media_prefix %}{{ obj.image }}">
+
+                    <p>
+                        <a href="{{ obj.url }}">{{ obj.company_name }}</a>
+                    </p>
+
+                    {% if obj.start > now %}
+                        <div class="label label-warning label-block">Zichtbaar vanaf {{ obj.start|date:"d M Y" }}</div>
+                    {% elif obj.end > now %}
+                        <div class="label label-success label-block">Zichtbaar tot {{ obj.end|date:"d M Y" }}</div>
+                    {% else %}
+                        <div class="label label-danger label-block">Niet zichtbaar</div>
+                    {% endif %}
+
+                    <a class="btn btn-primary btn-block" href="{% url 'banner_update' obj.pk %}">
+                        Wijzig
+                    </a>
+                </div>
+            </div>
+        {% endfor %}
+    </div>
+{% endblock %}
